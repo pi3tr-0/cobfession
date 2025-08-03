@@ -1,0 +1,38 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: 'OldEnglishGothicPixel';
+  src: url('/fonts/OldEnglishGothicPixelRegular.ttf') format('truetype'),
+       url('/fonts/OldEnglishGothicPixelRegular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Barrio';
+  src: url('/fonts/Barrio-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallback to ensure font is available */
+.font-old-english {
+  font-family: 'OldEnglishGothicPixel', serif;
+}
+
+.font-barrio {
+  font-family: 'Barrio', sans-serif;
+}
+
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-5px); 
+  }
+}
