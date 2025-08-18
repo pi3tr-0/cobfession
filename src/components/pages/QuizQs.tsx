@@ -6,9 +6,10 @@ import { useState } from "react";
 interface QuizQsProps {
   onSubmit?: () => void;
   showQuestions?: boolean;
+  onComplete?: () => void;
 }
 
-function QuizQs({ onSubmit, showQuestions = false }: QuizQsProps) {
+function QuizQs({ onSubmit, showQuestions = false, onComplete }: QuizQsProps) {
   // Questions with different types
   const questions = [
     { question: "are u straight?", type: "choice", option1: "Yes", option2: "No" },
@@ -22,27 +23,26 @@ function QuizQs({ onSubmit, showQuestions = false }: QuizQsProps) {
     { question: "jibby heart rate?", type: "text", placeholder: "Enter your answer..." },
     { question: "bukan kelantan kan?", type: "choice", option1: "Yes", option2: "No" },
     { question: "did andie lose a guy in 10 days?", type: "choice", option1: "Yes", option2: "No" },
-    { question: "how many dates have we been on? (not enough)", type: "text", placeholder: "Enter your answer..." },
+    { question: "how many dates have we been on?", type: "text", placeholder: "Enter your answer..." },
     { question: "ur fav date? why?", type: "text", placeholder: "Enter your answer..." },
     { question: "how long has it been since our first date?", type: "text", placeholder: "Enter your answer..." },
   ];
 
   // Placeholder texts for each question (appears after answering each question)
   const placeholderTexts = [
-    "Interesting choice...",
-    "Hmm, let me think about that...",
-    "That's quite revealing...",
-    "Good to know!",
-    "I see what you did there...",
-    "Classic response!",
-    "Now we're getting somewhere...",
-    "Competitive, I like it!",
-    "That's very specific...",
-    "Geography matters!",
-    "Movie references, nice!",
-    "Quality over quantity!",
-    "Sweet memories...",
-    "Time flies when you're having fun!"
+    "hmmmmm",
+    "hmmmmmmmmmmm",
+    "I love you like that",
+    "my petite girl :)",
+    "not as funny as your man...eh...",
+    "our first tiktok!",
+    "my nonchalant queen eating ts up :>",
+    "next badminton date when :3",
+    "i'm pretty sure you almost killed me....",
+    "I'll break the kelantan stereotype trust...",
+    "no cuz you can't lose something you never had. but I dont ever wanna lose u",
+    "not enough tbh </3",
+    "i love all of em :3",
   ];
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -67,6 +67,10 @@ function QuizQs({ onSubmit, showQuestions = false }: QuizQsProps) {
           top: window.innerHeight * 3, // 300vh
           behavior: 'smooth'
         });
+        // Trigger outro after scroll
+        setTimeout(() => {
+          onComplete?.();
+        }, 1000);
       }
       
       // Fade in
@@ -93,6 +97,14 @@ function QuizQs({ onSubmit, showQuestions = false }: QuizQsProps) {
           top: window.innerHeight * 3, // 300vh
           behavior: 'smooth'
         });
+        // Trigger outro after scroll
+        setTimeout(() => {
+          onComplete?.();
+        }, 1000);
+        // Trigger outro after scroll
+        setTimeout(() => {
+          onComplete?.();
+        }, 1000);
       }
       
       // Fade in

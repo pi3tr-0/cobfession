@@ -5,6 +5,7 @@ import Quickfire from "./components/pages/Quickfire";
 import QuickfireQs from "./components/pages/QuickfireQs";
 import Quiz from "./components/pages/Quiz";
 import QuizQs from "./components/pages/QuizQs";
+import Outro from "./components/pages/Outro";
 import BgLight from "./components/bg/Bg-light";
 import BgDark from "./components/bg/Bg-dark";
 import { useState } from "react";
@@ -27,6 +28,8 @@ function App() {
   const [showQuizQs, setShowQuizQs] = useState(false);
   const [quizQsFadeIn, setQuizQsFadeIn] = useState(false);
   const [quizYesPressed, setQuizYesPressed] = useState(false);
+  const [showOutro, setShowOutro] = useState(false);
+  const [outroFadeIn, setOutroFadeIn] = useState(false);
   const [grayedSections, setGrayedSections] = useState<{
     welcome: boolean;
     intro: boolean;
@@ -135,6 +138,22 @@ function App() {
     }, 100);
   };
 
+  const handleQuizQsComplete = () => {
+    console.log('QuizQs completed! Showing Outro...');
+    // Hide Quiz and QuizQs
+    setShowQuiz(false);
+    setQuizFadeIn(false);
+    setShowQuizQs(false);
+    setQuizQsFadeIn(false);
+    // Show Outro when QuizQs is completed
+    setShowOutro(true);
+    // Start fade in animation
+    setTimeout(() => {
+      setOutroFadeIn(true);
+      console.log('Outro should be visible now');
+    }, 100);
+  };
+
   const handleQuickfireHide = () => {
     setShowQuickfire(false);
     setQuickfireFadeIn(false);
@@ -238,7 +257,16 @@ function App() {
         <div className={`absolute inset-0 z-10 top-[200vh] h-screen transition-opacity duration-1000 ease-in-out ${
           quizQsFadeIn ? 'opacity-100' : 'opacity-0'
         }`}>
-          <QuizQs showQuestions={quizYesPressed} />
+          <QuizQs showQuestions={quizYesPressed} onComplete={handleQuizQsComplete} />
+        </div>
+      )}
+
+      {/* Outro Section - appears at 300vh */}
+      {showOutro && (
+        <div className={`absolute inset-0 z-10 top-[300vh] h-screen transition-opacity duration-1000 ease-in-out ${
+          outroFadeIn ? 'opacity-100' : 'opacity-0'
+        }`}>
+          <Outro />
         </div>
       )}
       
